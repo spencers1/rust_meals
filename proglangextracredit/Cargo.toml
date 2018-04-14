@@ -1,0 +1,6 @@
+[package]
+name = "proglangextracredit"
+version = "0.1.0"
+authors = ["sean"]
+
+[dependencies]
