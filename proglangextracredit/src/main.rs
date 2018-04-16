@@ -1,3 +1,4 @@
+// Sean Spencer, Matt Moore, Chris Andrews, Joseph Dunne
 use std::fs::File;
 use std::env;
 use std::io::Read;
@@ -14,6 +15,7 @@ fn main() {
     f.read_to_string(&mut contents)         // reads the file to a string
         .expect("something went wrong reading the file");
 
+    println!("Input:\n {}", contents);     // print contents of file
     let mut numbers = convert_to_vector(&mut contents);
 
     if numbers[0] > 0 {
@@ -29,6 +31,7 @@ fn calculate_meals(numbers: &mut Vec<usize>) {
         println!("Unsatisfactory Meal");
     }
 
+    let totaldishes = numbers[0];
     let mut meatcounter: usize = 0;    // made a counter for each type of dish
     let mut vegcounter = 0;
     let mut orgcounter = 0;
@@ -36,13 +39,12 @@ fn calculate_meals(numbers: &mut Vec<usize>) {
     let mut dairycounter = 0;
     let mut peanutscounter = 0;
     let mut i: usize = 1;
-    let size: usize = numbers[0] * 7;
+    let size: usize = totaldishes * 7; // number of ints in file is always num of dishes * 7
     let mut done = false;
-    numbers.push(0);      // I kept getting an index out of bounds error
-    numbers.push(0);      // so I added a couple more idk if this is frowned upon
+    numbers.push(0);
 
     while !done {
-
+        // next 6 values are the values within a meal
         meatcounter += numbers[i+1];
         vegcounter += numbers[i+2];
         orgcounter += numbers[i+3];
@@ -56,11 +58,10 @@ fn calculate_meals(numbers: &mut Vec<usize>) {
             done = false;
         }
     }
-        let numdishes = numbers[0];
 
-        if numdishes - meatcounter > 2 && numdishes - vegcounter > 2 && // check if each one satisfies
-             orgcounter > 2 && numdishes - dessertcounter > 2 &&
-            numdishes - dairycounter > 2 && numdishes - peanutscounter > 2 {
+        if totaldishes - meatcounter > 2 && totaldishes - vegcounter > 2 && // check if each one satisfies
+             orgcounter > 2 && totaldishes - dessertcounter > 2 &&
+            totaldishes - dairycounter > 2 && totaldishes - peanutscounter > 2 {
                 println!("Satisfactory Meal");
             } else {
                 println!("Unsatisfactory Meal");
