@@ -1,4 +1,4 @@
-// Sean Spencer, Matt Moore, Chris Andrews, Joseph Dunne
+// Sean Spencer
 use std::fs::File;
 use std::env;
 use std::io::Read;
